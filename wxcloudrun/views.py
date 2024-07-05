@@ -67,7 +67,7 @@ def get_count():
 
 
 @app.route('/test')
-def index():
+def test():
     """
     :return: 返回index页面
     """
