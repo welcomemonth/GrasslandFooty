@@ -1,21 +1,16 @@
-# # 创建应用实例
-# import sys
+# 创建应用实例
+import sys
+from robot import myrobot
+from flask import Flask
+from werobot.contrib.flask import make_view
 
-# from wxcloudrun import app
+app = Flask(__name__)
+app.add_url_rule(rule='/robot/', # WeRoBot 挂载地址
+                 endpoint='werobot', # Flask 的 endpoint
+                 view_func=make_view(myrobot),
+                 methods=['GET', 'POST'])
 
-# # 启动Flask Web服务
-# if __name__ == '__main__':
-#     app.run(host=sys.argv[1], port=sys.argv[2])
+# 启动Flask Web服务
+if __name__ == '__main__':
+    app.run(host=sys.argv[1], port=sys.argv[2])
 
-import werobot
-
-robot = werobot.WeRoBot(token='zzylvhyy')
-
-@robot.handler
-def hello(message):
-    return 'Hello World!'
-
-# 让服务器监听在 0.0.0.0:80
-robot.config['HOST'] = '0.0.0.0'
-robot.config['PORT'] = 80
-robot.run()
