@@ -1,7 +1,7 @@
 # 创建应用实例
 import sys
 from robot import myrobot
-from flask import Flask
+from flask import Flask, request
 from werobot.contrib.flask import make_view
 
 app = Flask(__name__)
